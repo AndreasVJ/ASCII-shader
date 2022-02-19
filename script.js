@@ -61,9 +61,9 @@ function timerCallback() {
     const text = convertImageDataToASCII(imageData, 10)
     ascii.innerHTML = text
     setTimeout(() => {
-        timerCallback();
-    }, 0);
-  };
+        timerCallback()
+    }, 0)
+}
 
 video.addEventListener("play", () => {
     console.log("test")
