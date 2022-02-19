@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASCII Converter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <input type="file" accept="image/*" id="imageUploader">
+
+    <br>
+
+    <video id="video" class="flipHorizontaly" playsinline>Kamera er ikke tilgjengelig</video>
+
+    <br>
+    <button id="startCameraButton">Start camera</button>
+    <button id="stopCameraButton">Stop camera</button>
+    
+    <img id="inputImage"/>
+
+    <canvas id="canvas"></canvas>
+
+    <pre id="ascii" class="flipHorizontaly"></pre>
+
+    <script src="./shaders.js"></script>
+    <script src="./script.js"></script>
+</body>
+</html>
