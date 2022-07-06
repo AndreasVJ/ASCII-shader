@@ -1,15 +1,62 @@
 body {
     background-color: rgb(20, 20, 20);
-    width: 50vw;
     margin: 0;
     font-family: Courier;
-    font-size: 20px;
+    color: white;
 }
 
-.flipHorizontaly {
-    /* transform : scaleX(-1); */
+#asciiContainer {
+    height: 85vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flipHorizontally {
+    transform: scaleX(-1);
 }
 
 #ascii {
-    overflow-x: visible;
+    color: white;
+    font-size: 6rem;
+}
+
+#bottomMenu {
+    height: 15vh;
+    display: flex;
+    justify-content: space-around;
+}
+
+#imageUploader, #resolutionSlider {
+    width: 10vw;
+}
+
+#resolutionSliderText {
+    text-align: center;
+}
+
+#cameraButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 10vh;
+    height: 10vh;
+    border-radius: 100%;
+    border: 0.5rem solid white;
+    opacity: 0.5;
+}
+
+#cameraButton:hover {
+    opacity: 1;
+}
+
+#cameraButtonInside {
+    width: 9vh;
+    height: 9vh;
+    border-radius: 100%;
+    background-color: red;
+}
+
+#video, #canvas, #inputImage {
+    display: none;
 }
