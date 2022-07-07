@@ -2,16 +2,17 @@ const imageUploader = document.getElementById("imageUploader")
 const inputImage = document.getElementById("inputImage")
 const video = document.getElementById("video")
 const cameraButton = document.getElementById("cameraButton")
+const cameraButtonInside = document.getElementById("cameraButtonInside")
 const canvas = document.getElementById("canvas")
 const ctx = canvas.getContext("2d")
 const ascii = document.getElementById("ascii")
-const resolutionSlider = document.getElementById("resolutionSlider")
-const resolutionSliderText = document.getElementById("resolutionSliderText")
+const pixelationSlider = document.getElementById("pixelationSlider")
+const pixelationSliderText = document.getElementById("pixelationSliderText")
 
 
-resolutionSliderText.innerText = "Pixelation: " + resolutionSlider.value
-resolutionSlider.oninput = () => {
-    resolutionSliderText.innerText = "Pixelation: " + resolutionSlider.value
+pixelationSliderText.innerText = "Pixelation: " + pixelationSlider.value
+pixelationSlider.oninput = () => {
+    pixelationSliderText.innerText = "Pixelation: " + pixelationSlider.value
 }
 
 let streaming = false
@@ -29,8 +30,8 @@ imageUploader.onchange = event => {
 
         const imageData = getImageDataFromImage(inputImage, inputImage.width, inputImage.height)
 
-        const text = convertImageDataToASCII(imageData, parseInt(resolutionSlider.value))
-        ascii.style.fontSize = window.innerHeight*0.7 / (inputImage.height / resolutionSlider.value) + "px"
+        const text = convertImageDataToASCII(imageData, parseInt(pixelationSlider.value))
+        ascii.style.fontSize = window.innerHeight*0.7 / (inputImage.height / pixelationSlider.value) + "px"
         ascii.innerHTML = text
     }
 }
@@ -39,12 +40,13 @@ function startCamera() {
 
     cameraButton.onclick = stopCamera
 
+    cameraButtonInside.classList.add("cameraButtonInsideRecording")
+
     navigator.mediaDevices.getUserMedia({ video: true, audio: false })
     .then( stream => {
         video.srcObject = stream
         video.msHorizontalMirror = true;
         video.play()
-        streaming = true
     })
     .catch( error => {
         alert("An error has occurred: " + error)
@@ -52,13 +54,17 @@ function startCamera() {
 }
 
 function stopCamera() {
+    if (streaming) {
+        cameraButton.onclick = startCamera
+    
+        cameraButtonInside.classList.remove("cameraButtonInsideRecording")
+    
+        video.srcObject.getTracks().forEach(function(track) {
+            track.stop()
+        })
+        streaming = false
+    }
 
-    cameraButton.onclick = startCamera
-
-    video.srcObject.getTracks().forEach(function(track) {
-        track.stop()
-    })
-    streaming = false
 }
 
 cameraButton.onclick = startCamera
@@ -69,8 +75,8 @@ function timerCallback() {
     }
     if (video.videoWidth != 0) {
         const imageData = getImageDataFromImage(video, video.videoWidth, video.videoHeight)
-        const text = convertImageDataToASCII(imageData, parseInt(resolutionSlider.value))
-        ascii.style.fontSize = window.innerHeight*0.7 / (video.videoHeight / resolutionSlider.value) + "px"
+        const text = convertImageDataToASCII(imageData, parseInt(pixelationSlider.value))
+        ascii.style.fontSize = window.innerHeight*0.7 / (video.videoHeight / pixelationSlider.value) + "px"
         ascii.innerHTML = text
     }
     setTimeout(() => {
@@ -79,6 +85,7 @@ function timerCallback() {
 }
 
 video.addEventListener("play", () => {
+    streaming = true
     timerCallback()
     ascii.classList.add("flipHorizontally")
 })

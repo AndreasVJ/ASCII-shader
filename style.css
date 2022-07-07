@@ -31,7 +31,7 @@ body {
     width: 10vw;
 }
 
-#resolutionSliderText {
+#pixelationSliderContainer {
     text-align: center;
 }
 
@@ -43,7 +43,7 @@ body {
     height: 10vh;
     border-radius: 100%;
     border: 0.5rem solid white;
-    opacity: 0.5;
+    opacity: 0.8;
 }
 
 #cameraButton:hover {
@@ -55,6 +55,13 @@ body {
     height: 9vh;
     border-radius: 100%;
     background-color: red;
+    transition: 0.5s;
+}
+
+.cameraButtonInsideRecording {
+    width: 5vh !important;
+    height: 5vh !important;
+    border-radius: 20% !important;
 }
 
 #video, #canvas, #inputImage {
