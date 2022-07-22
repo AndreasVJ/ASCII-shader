@@ -1,2 +1,5 @@
 # ASCII-shader
-ASCII shader using javascript and canvas
+
+A simple program that converts images to ASCII characters
+
+![image info](./website.png)
