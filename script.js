@@ -1,4 +1,5 @@
-const imageUploader = document.getElementById("imageUploader")
+const file = document.getElementById("file")
+const fileName = document.getElementById("fileName")
 const inputImage = document.getElementById("inputImage")
 const video = document.getElementById("video")
 const cameraButton = document.getElementById("cameraButton")
@@ -17,7 +18,7 @@ pixelationSlider.oninput = () => {
 
 let streaming = false
 
-imageUploader.onchange = event => {
+file.onchange = event => {
 
     stopCamera()
     cameraButton.onclick = startCamera
@@ -25,6 +26,7 @@ imageUploader.onchange = event => {
     ascii.classList.remove("flipHorizontally")
 
     inputImage.src = URL.createObjectURL(event.target.files[0])
+    fileName.innerText = event.target.files[0].name
     inputImage.onload = () => {
         URL.revokeObjectURL(inputImage.src) // free memory
 

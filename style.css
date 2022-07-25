@@ -25,14 +25,39 @@ body {
     height: 15vh;
     display: flex;
     justify-content: space-around;
+    align-items: center;
 }
 
-#imageUploader, #resolutionSlider {
-    width: 10vw;
+#imageUploader, #pixelationSliderContainer {
+    width: 15vw;
+}
+
+#file {
+    display: none;
+}
+
+#fileName {
+    text-align: center;
+    margin-top: 0.2rem;
+    margin-bottom: 0;
+}
+
+#imageUploader label {
+    height: 7vh;
+    border-radius: 1rem;
+    background: linear-gradient(40deg, #3a4868, #6eb2ff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
 }
 
 #pixelationSliderContainer {
     text-align: center;
+}
+
+#pixelationSliderText {
+    margin-top: 0;
 }
 
 #cameraButton {
